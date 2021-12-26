@@ -1,0 +1,27 @@
+language: c++
+
+stages:
+    - build
+    - test
+    - install
+
+jobs:
+  include:
+    - stage: build
+      name: "build"
+      script: 
+         - mkdir build
+         - cd build
+         - cmake ..
+
+    - stage: test
+      name: "test"
+      script:
+         - cd build 
+         - ctest --output-on-failure
+
+    - stage: install
+      name: "install lib"
+      script: 
+         - cd build
+         - make install
