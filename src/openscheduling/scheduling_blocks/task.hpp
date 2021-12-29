@@ -1,37 +1,86 @@
 #ifndef _TASK_
 #define _TASK_
 
+#include <list>
+
 #include "scheduling_block.hpp"
 
-namespace scheduling_blocks {
+#include "constraints/constraint.hpp"
 
-    /***
-    * A task is the leaf of the scheduling block tree structure.
-    * @see Sequence
-    * @see SchedulingBlock
-    */
-    class SchedulingBlock: public SchedulingBlock {
+namespace openscheduling
+{
+    namespace scheduling_blocks {
 
-       public:
-          /**
-           * Default constructor
-           **/
-           Task();
+        /***
+        * A task is the leaf of the scheduling block tree structure.
+        * @see Sequence
+        * @see SchedulingBlock
+        */
+        class Task: public SchedulingBlock {
 
-          /**
-           * Destructor
-           **/
-           virtual ~Task();
+        public:
+            
+                /**
+                 * @brief Construct a new Task object
+                 * 
+                 * @param id 
+                 * @param name 
+                 * @param priority 
+                 */
+                Task(unsigned int id, std::string name, double priority);
 
-       private:
-           
-          /**
-           * A brief description of the task. The default value is an empty string
-           **/
-           ::std::string description_;
-          
-    };
+                /**
+                 * @brief Construct a new Task object
+                 * 
+                 * @param id 
+                 * @param name 
+                 * @param priority 
+                 * @param description 
+                 * @param constraint 
+                 */
+                Task(unsigned int id, std::string name, double priority, std::string description, constraints::Constraint* constraint);
 
-} //namespace scheduling_blocks
+                /**
+                 * @brief Destroy the Task object
+                 * 
+                 */
+                ~Task();
+
+                /**
+                 * @brief Get the Priority object
+                 * 
+                 * @return const double 
+                 */
+                const double GetPriority() const;
+
+
+        private:       
+
+            /**
+            * @brief description of the task. The default value is an empty string
+            * 
+            */
+            ::std::string description_;
+
+            /**
+             * @brief The priority of a task. The default value is 0.
+             * 
+             */
+            double priority_;
+            
+            /**
+             * @brief 
+             * 
+             */
+            constraints::Constraint* constraint_;
+
+
+            
+        };
+
+    } //namespace scheduling_blocks
+    
+} // namespace openscheduling
+
 
 #endif /* _TASK_ */

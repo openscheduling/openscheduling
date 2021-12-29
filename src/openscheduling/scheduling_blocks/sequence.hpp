@@ -1,56 +1,55 @@
 #ifndef _SEQUENCE_
 #define _SEQUENCE_
 
+#include <list>
+
 #include "scheduling_block.hpp"
-#include "sb_relations/sb_relation.hpp"
 
-namespace scheduling_blocks {
+namespace openscheduling
+{
+    namespace scheduling_blocks {
 
-    /***
-    * A sequence is the container/composite of the SB.
-    * It also defines how the SB are related within a sequence
-    * @see SchedulingBlock
-    * @see Task
-    */
-    class Sequence: public SchedulingBlock {
+        /***
+        * A sequence is the container/composite of the SB.
+        * It also defines how the SB are related within a sequence
+        * @see SchedulingBlock
+        * @see Task
+        */
+        class Sequence: public SchedulingBlock {
 
-       public:
-          
-          /**
-           * Default constructor
-           **/
-           Sequence();
-
-          /**
-           * Destructor
-           **/
-           virtual ~Sequence();
+        public:
+            
            
-           /**
-           * Add a SB to the sequence
-           **/
-           void AddSB(SchedulingBlock& sb);
+            Sequence(unsigned int id, std::string name);
 
-           /**
-           * Remove a SB from the sequence
-           **/
-           void RemoveSB(SchedulingBlock& sb);
-           
-           /**
-           * Sets the SB relation of the sequence
-           * @see SBRelation
-           **/
-           void SetSBRelation(SBRelation& sb_relation);
+            /**
+             * Destructor
+             **/
+            ~Sequence();
+            
+            /**
+             * Add a SB to the sequence
+             **/
+            void AddSB(SchedulingBlock& sb);
 
-       private:
-           
-          /**
-           * A list of SBs
-           **/
-           ::std::list<SchedulingBlock*> sbs_;
-          
-    };
+            /**
+             * Remove a SB from the sequence
+             **/
+            void RemoveSB(SchedulingBlock& sb);
+            
 
-} //namespace scheduling_blocks
+        private:
+            
+            /**
+             * A list of SBs
+             **/
+            ::std::list<SchedulingBlock*> sbs_;
+
+        };
+
+    } //namespace scheduling_blocks
+
+} // namespace openscheduling
+
 
 #endif /* _SEQUENCE_ */

@@ -1,35 +1,53 @@
-#ifndef _CONSTRAINT_
+#if !defined(_CONSTRAINT_)
 #define _CONSTRAINT_
 
-namespace scheduling_blocks {
+#include <string>
 
-    namespace constraints {
+namespace openscheduling
+{
+    namespace scheduling_blocks {
 
-        /**
-        * A constraint is a condition that a SB must satisfy when the SB is scheduled
-        **/
-        class Constraint {
+        namespace constraints {
 
-            public:
-               
-               /**
-                * Default constructor
-                **/
-                Constraint();
+            /**
+            * A constraint is a condition that a SB must satisfy when the SB is scheduled
+            * @see SchedulingBlock
+            **/
+            class Constraint {
 
-               /**
-                * Destructor
-                **/
-                virtual ~Constraint();
+                public:
+                
+                    /**
+                     * @brief Construct a new Constraint object
+                     * 
+                     */
+                    Constraint(::std::string name);
 
-                bool IsFeasible() const = 0;
+                    /**
+                     * @brief Destroy the Constraint object
+                     * 
+                     */
+                    virtual ~Constraint();
 
-                void GetPossiblePeriods() const = 0;
+                    /**
+                     * @brief 
+                     * 
+                     * @return true 
+                     * @return false 
+                     */
+                    virtual bool IsFeasible() const = 0;
+                
+                private:
 
-        };
+                    ::std::string name_;
 
-    } //namespace constraints
+            };
 
-} //namespace scheduling_blocks
+        } //namespace constraints
 
-#endif /* _CONSTRAINT_ */
+    } //namespace scheduling_blocks
+    
+} // namespace openscheduling
+
+
+#endif // _CONSTRAINT_
