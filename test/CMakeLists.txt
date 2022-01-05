@@ -1,3 +1,4 @@
 find_package(GTest)
 include(GoogleTest)
-add_subdirectory(unit_test)
+
+add_subdirectory(functional_test)

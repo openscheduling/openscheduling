@@ -8,7 +8,10 @@ TEST(task_test, test_constructor)
 {
     
     Task t(0,"",1.0);
-    t.GetId();
+    
+    EXPECT_EQ(0, t.GetId());
+    EXPECT_EQ("", t.GetName());
+    EXPECT_EQ(1.0, t.GetPriority());
 }
 
 TEST(task_test, test_destructor)
